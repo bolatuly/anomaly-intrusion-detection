@@ -1,0 +1,8 @@
+,0
+0,duration
+1,dst_bytes
+2,flag_RSTOS0
+3,dst_host_diff_srv_rate
+4,flag_S2
+5,flag_SH
+6,root_shell

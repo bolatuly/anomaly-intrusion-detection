@@ -1,0 +1,8 @@
+,0
+0,flag_RSTOS0
+1,service_finger
+2,duration
+3,service_http_8001
+4,dst_host_diff_srv_rate
+5,dst_bytes
+6,service_hostnames
