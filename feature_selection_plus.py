@@ -5,7 +5,11 @@ from sklearn.ensemble import RandomForestRegressor
 
 if __name__ == '__main__':
 
-    data = pd.read_csv("data/csv/kddcup.data_10_percent_corrected.csv", header=0)
+    train = pd.read_csv("data/csv/KDDTrain+.csv", header=0)
+    test = pd.read_csv("data/csv/KDDTest+.csv", header=0)
+
+    train_objs_num = len(train)
+    data = pd.concat(objs=[train, test], axis=0)
 
     data = data.drop(["Unnamed: 0"], axis=1)
     labels = data["label_cat"].values
@@ -44,4 +48,4 @@ if __name__ == '__main__':
     col = list(data.columns.values[indices[:7]])
     out = pd.DataFrame(col)
 
-    out.to_csv("data/csv/kdd_feature_selected.csv", date_format='%Y-%m-%d %H:%M:%S')
+    out.to_csv("data/csv/kdd+_feature_selected.csv", date_format='%Y-%m-%d %H:%M:%S')
