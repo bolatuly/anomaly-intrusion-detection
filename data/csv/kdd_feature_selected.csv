@@ -1,8 +1,8 @@
 ,0
 0,count
-1,src_bytes
-2,dst_bytes
-3,dst_host_serror_rate
-4,dst_host_srv_diff_host_rate
-5,wrong_fragment
-6,dst_host_srv_serror_rate
+1,dst_bytes
+2,src_bytes
+3,num_compromised
+4,srv_serror_rate
+5,dst_host_serror_rate
+6,dst_host_srv_diff_host_rate

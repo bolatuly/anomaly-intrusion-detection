@@ -5,8 +5,8 @@ if __name__ == '__main__':
     headers = pd.read_table("../data/kdd_plus/names+.txt", header=None).values.ravel()
     train = pd.read_csv("../data/kdd_plus/KDDTrain+.txt", header=None, names=headers)
 
-    test = pd.read_csv("../data/kdd_plus/KDDTest+.txt", header=None, names=headers)
-    #test = pd.read_csv("../data/kdd_plus/KDDTest-21.txt", header=None, names=headers)
+    #test = pd.read_csv("../data/kdd_plus/KDDTest+.txt", header=None, names=headers)
+    test = pd.read_csv("../data/kdd_plus/KDDTest-21.txt", header=None, names=headers)
 
     train_objs_num = len(train)
     dataset = pd.concat(objs=[train, test], axis=0)
@@ -70,6 +70,6 @@ if __name__ == '__main__':
     test = copy.copy(dataset[train_objs_num:])
 
     train.to_csv("../data/csv/KDDTrain+.csv", date_format='%Y-%m-%d %H:%M:%S')
-    test.to_csv("../data/csv/KDDTest+.csv", date_format='%Y-%m-%d %H:%M:%S')
-    #test.to_csv("../data/csv/KDDTest-21.csv", date_format='%Y-%m-%d %H:%M:%S')
+    #test.to_csv("../data/csv/KDDTest+.csv", date_format='%Y-%m-%d %H:%M:%S')
+    test.to_csv("../data/csv/KDDTest-21.csv", date_format='%Y-%m-%d %H:%M:%S')
 

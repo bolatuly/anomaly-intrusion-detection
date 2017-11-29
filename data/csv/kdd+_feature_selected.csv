@@ -5,4 +5,4 @@
 3,service_http
 4,dst_bytes
 5,dst_host_diff_srv_rate
-6,dst_host_same_src_port_rate
+6,duration

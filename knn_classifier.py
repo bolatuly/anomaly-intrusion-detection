@@ -62,6 +62,6 @@ def kdd_cup_plus_classifier():
 
 
 if __name__ == '__main__':
-    #score = kdd_cup_classifier()
-    score = kdd_cup_plus_classifier()
+    score = kdd_cup_classifier()
+    #score = kdd_cup_plus_classifier()
     print(score)
