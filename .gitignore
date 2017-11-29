@@ -105,4 +105,5 @@ venv.bak/
 # mypy
 .mypy_cache/
 /.idea
-/data/kddcup.data.corrected
+/data/kddcup.data_10_percent_corrected
+/data/csv/kddcup.data_10_percent_corrected.csv

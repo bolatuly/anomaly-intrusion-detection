@@ -1,9 +1,8 @@
 import pandas as pd
-from sklearn.cross_validation import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
-from scipy.spatial import distance
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import ShuffleSplit
 
 def min_max_scaler(features):
     min_max = MinMaxScaler()
@@ -18,18 +17,18 @@ def kdd_cup_classifier():
     labels = data["label_cat"].values
     features = data[col_features['0'].values].values
 
-    X_train, X_test, y_train, y_test = train_test_split(features, labels, test_size=.20)
+    cv = ShuffleSplit(n_splits=3, test_size=0.2, random_state=0)
+    scores = []
 
-    my_classifier = KNeighborsClassifier(n_jobs=-1)
+    for train_index, test_index in cv.split(features, labels):
+        X_train, X_test = features[train_index], features[test_index]
+        y_train, y_test = labels[train_index], labels[test_index]
+        my_classifier = KNeighborsClassifier(n_jobs=-1)
+        my_classifier.fit(X_train, y_train)
+        predictions = my_classifier.predict(X_test)
+        scores.append(accuracy_score(y_test, predictions))
 
-    # scaling
-    my_classifier.fit(X_train, y_train)
-
-    predictions = my_classifier.predict(X_test)
-
-    # scores = cross_val_score(my_classifier, features, labels, cv=3)
-    # print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
-    return accuracy_score(y_test, predictions)
+    return (scores[0] + scores[1]+scores[2])/3
 
 
 def kdd_cup_plus_classifier():
@@ -52,19 +51,17 @@ def kdd_cup_plus_classifier():
     train_features = min_max_scaler(train_features)
     test_features = min_max_scaler(test_features)
 
-    my_classifier = KNeighborsClassifier(n_jobs=-1, n_neighbors=10)
+    my_classifier = KNeighborsClassifier(n_jobs=-1)
 
     # scaling
     my_classifier.fit(train_features, train_labels)
 
     predictions = my_classifier.predict(test_features)
 
-    # scores = cross_val_score(my_classifier, features, labels, cv=3)
-    # print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
     return accuracy_score(test_labels, predictions)
 
 
 if __name__ == '__main__':
-    score = kdd_cup_classifier()
-    #score = kdd_cup_plus_classifier()
+    #score = kdd_cup_classifier()
+    score = kdd_cup_plus_classifier()
     print(score)
